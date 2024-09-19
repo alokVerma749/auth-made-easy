@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Popup Example</title>
+  <style>
+    /* Styles for the modal (pop-up) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 30%; /* Adjust the width of the modal */
+      border-radius: 10px;
+    }
+    
+    .close {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Button styles */
+    .login-btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Button that triggers the modal -->
+  <button id="openModal" class="login-btn">Login / Register</button>
+
+  <!-- The Modal (Pop-up) -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm" action="/api/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to control the modal
+    const modal = document.getElementById("loginModal");
+    const btn = document.getElementById("openModal");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    // Open modal when the button is clicked
+    btn.onclick = function() {
+      modal.style.display = "block";
+    };
+
+    // Close the modal when the 'x' is clicked
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    };
+
+    // Close the modal if the user clicks anywhere outside of it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>
